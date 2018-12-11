@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |      |      |      |      |  NAV |  FUN ||  FUN |  NAV |      |      |      |      |
   |______|______+------+------+______|______||______|______+------+------+______|______|
   		          |      |      |                            |      |      |
-		            |LArrow|UArrow|                            |DArrow|RArrow|
+		            | LCmd | Space|                            | BSpc | RCmd |
                 |______|______|                            |______|______|
                         ,_____________,            ,_____________,
                         |      |      |            |      |      |
@@ -80,19 +80,19 @@ Single hit:		          |   '  | BSpc |            | Space|   1  |
 Hold:  		              |SMBOLS|  Sft |            |  Sft |SMBOLS|
                         |______|______|___,    ,___|______|______|
                             |      |      |    |      |      |
-          	                | LCmd | LCtrl|    | RCtrl| RCmd |
+          	                |UArrow| LCtrl|    | RCtrl|DArrow|
                             |      |      |    |      |      |
 		                        +------+------+    +------+------+
                             |      |      |    |      |      |
- 	                          | Space| Caps |    |  Ins | BSpc |
+ 	                          |LArrow| Caps |    |  Ins |DArrow|
                             |______|______|    |_STENO|______|
 */
 [_QWERTY] = KEYMAP( \
   KC_ESC,  KC_Q,         KC_W,         E_RT,         R_RT,         KC_T,                     KC_Y,            KC_U,          KC_I,         KC_O,         KC_SCLN,      KC_BSPC, \
   KC_TAB,  LSFT_T(KC_A), LCTL_T(KC_S), LCMD_T(KC_D), LALT_T(KC_F), KC_G,                     KC_H,            RALT_T(KC_J),  RCMD_T(KC_K), RCTL_T(KC_L), RSFT_T(KC_P), KC_ENT , \
   KC_LCTL, KC_Z,         KC_X,         KC_C,         RIGHT_NAV,    FUNCTIONS_LEFT,           FUNCTIONS_RIGHT, LEFT_NAV,      KC_COMM,      KC_DOT,       KC_SLSH,      KC_RCTL, \
-  _______, _______,      KC_LEFT,      KC_UP,        SYMBOLS_LEFT, LSFT_T(KC_BSPC),          RSFT_T(KC_SPC),  SYMBOLS_RIGHT, KC_DOWN,      KC_RIGHT,     _______,      _______, \
-  KC_SPC,  KC_LCAP,      _______,      _______,      KC_LCMD,      KC_LCTL,                  KC_RCTL,         KC_RCMD,       _______,      _______,      STENO_TOGG,   KC_BSPC  \
+  _______, _______,      KC_LCMD,      KC_SPC,       SYMBOLS_LEFT, LSFT_T(KC_BSPC),          RSFT_T(KC_SPC),  SYMBOLS_RIGHT, KC_BSPC,      KC_RCMD,      _______,      _______, \
+  KC_LEFT,  KC_LCAP,     _______,      _______,      KC_UP,        KC_LCTL,                  KC_RCTL,         KC_DOWN,       _______,      _______,      STENO_TOGG,   KC_RIGHT \
 ),
 
 
