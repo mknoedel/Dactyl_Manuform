@@ -33,13 +33,11 @@ extern keymap_config_t keymap_config;
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  SYMBOLS_LEFT = LT(_SYMBOLS,KC_QUOTE),
-  SYMBOLS_RIGHT = LT(_SYMBOLS,KC_1),
   LEFT_NAV = LT(_LEFTNAV,KC_M),
   RIGHT_NAV = LT(_RIGHTNAV,KC_V),
   FUNCTIONS_LEFT = LT(_FUNCTIONS,KC_B),
   FUNCTIONS_RIGHT = LT(_FUNCTIONS,KC_N),
-  STENO_TOGG = LT(_STENO, KC_INS),
+  STENO_TOGG = LT(_STENO, KC_ESC),
 
   PLOVER,
   EXT_PLV,
@@ -50,8 +48,8 @@ enum custom_keycodes {
 // These  pairs when held together - will turn on the EXTRA RIGHT layer,
 // But will do nothing when held down by themselves.
 // The single hit will still be their regular key.
-  E_RT = LT(_DUMMY1, KC_E),
-  R_RT = LT(_DUMMY2, KC_R)
+  // E_RT = LT(_DUMMY1, KC_E),
+  // R_RT = LT(_DUMMY2, KC_R)
 };
 
 
@@ -60,16 +58,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Qwerty
   ,____________________________________________________________________________________,
   |      |      |      |      |      |      ||      |      |      |      |      |      |
-  | Esc  |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   ;  |BSpc  |
-  |      |      |      |both-ExtraRgt|      ||      |      |      |      |      |      |
+  |  Esc |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   ;  | BSpc |
+  | STENO|      |      |      |      |      ||      |      |      |      |      |      |
   |------+------+------+------+------+------||------+------+------+------+------+------|
   |      |      |      |      |      |      ||      |      |      |      |      |      |
-  | Tab  |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  |   P  |Enter |
-  |      |  Sft | Ctrl |  Cmd |  Alt |      ||      |  Alt |  Cmd | Ctrl |  Sft |      |
+  |  Tab |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  |   P  | Enter|
+  |  Sft |  Sft | Ctrl |  Cmd |  Alt |      ||      |  Alt |  Cmd | Ctrl |  Sft |  Sft |
   |------+------+------+------+------+------||------+------+------+------+------+------|
   |      |      |      |      |      |      ||      |      |      |      |      |      |
-  | Ctrl |   Z  |   X  |   C  |   V  |   B  ||   N  |   M  |   ,  |   .  |   /  |RCtrl |
-  |      |      |      |      |  NAV |  FUN ||  FUN |  NAV |      |      |      |      |
+  |LArrow|   Z  |   X  |   C  |   V  |   B  ||   N  |   M  |   ,  |   .  |   /  |RArrow|
+  | Ctrl |      |      |      |  NAV |  FUN ||  FUN |  NAV |      |      |      | RCtrl|
   |______|______+------+------+______|______||______|______+------+------+______|______|
   		          |      |      |                            |      |      |
 		            | LCmd | Space|                            | BSpc | RCmd |
@@ -77,22 +75,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         ,_____________,            ,_____________,
                         |      |      |            |      |      |
 Single hit:		          |   '  | BSpc |            | Space|   1  |
-Hold:  		              |SMBOLS|  Sft |            |  Sft |SMBOLS|
+Hold:  		              |      |  Sft |            |  Sft |      |
                         |______|______|___,    ,___|______|______|
                             |      |      |    |      |      |
-          	                |UArrow| LCtrl|    | RCtrl|DArrow|
+          	                |UArrow|SMBOLS|    |NMBERS|UArrow|
                             |      |      |    |      |      |
 		                        +------+------+    +------+------+
                             |      |      |    |      |      |
- 	                          |LArrow| Caps |    |  Ins |DArrow|
-                            |______|______|    |_STENO|______|
+ 	                          |DArrow|RArrow|    |LArrow|DArrow|
+                            |______|______|    |______|______|
 */
 [_QWERTY] = KEYMAP( \
-  KC_ESC,  KC_Q,         KC_W,         E_RT,         R_RT,         KC_T,                     KC_Y,            KC_U,          KC_I,         KC_O,         KC_SCLN,      KC_BSPC, \
-  KC_TAB,  LSFT_T(KC_A), LCTL_T(KC_S), LCMD_T(KC_D), LALT_T(KC_F), KC_G,                     KC_H,            RALT_T(KC_J),  RCMD_T(KC_K), RCTL_T(KC_L), RSFT_T(KC_P), KC_ENT , \
-  KC_LCTL, KC_Z,         KC_X,         KC_C,         RIGHT_NAV,    FUNCTIONS_LEFT,           FUNCTIONS_RIGHT, LEFT_NAV,      KC_COMM,      KC_DOT,       KC_SLSH,      KC_RCTL, \
-  _______, _______,      KC_LCMD,      KC_SPC,       SYMBOLS_LEFT, LSFT_T(KC_BSPC),          RSFT_T(KC_SPC),  SYMBOLS_RIGHT, KC_BSPC,      KC_RCMD,      _______,      _______, \
-  KC_LEFT,  KC_LCAP,     _______,      _______,      KC_UP,        KC_LCTL,                  KC_RCTL,         KC_DOWN,       _______,      _______,      STENO_TOGG,   KC_RIGHT \
+  STENO_TOGG,      KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,                     KC_Y,            KC_U,         KC_I,         KC_O,         KC_SCLN,      KC_BSPC,          \
+  LSFT_T(KC_TAB),  LSFT_T(KC_A), LCTL_T(KC_S), LCMD_T(KC_D), LALT_T(KC_F), KC_G,                     KC_H,            RALT_T(KC_J), RCMD_T(KC_K), RCTL_T(KC_L), RSFT_T(KC_P), RSFT_T(KC_ENT),   \
+  LCTL_T(KC_LEFT), KC_Z,         KC_X,         KC_C,         RIGHT_NAV,    FUNCTIONS_LEFT,           FUNCTIONS_RIGHT, LEFT_NAV,     KC_COMM,      KC_DOT,       KC_SLSH,      RCTL_T(KC_RIGHT), \
+  _______,         _______,      KC_LCMD,      KC_SPC,       KC_QUOTE,     LSFT_T(KC_BSPC),          RSFT_T(KC_SPC),  KC_1,         KC_BSPC,      KC_RCMD,      _______,      _______,          \
+  KC_DOWN,         KC_RIGHT,     _______,      _______,      KC_UP,        MO(_SYMBOLS),             MO(_SYMBOLS),    KC_UP,        _______,      _______,      KC_LEFT,      KC_DOWN           \
 ),
 
 
@@ -147,14 +145,18 @@ without separate thumbcluster.
                         ,_____________,            ,_____________,
                         |      |      |            |      |      |
            		          |   =  |   =  |            |   _  |   _  |
-                        |______|______|            |______|______|
+                        |______|______|___,    ,___|______|______|
+                            |      |      |    |      |      |
+          	                |   `  |   `  |    |   ~  |   ~  |
+                            |      |      |    |      |      |
+		                        |______|______|    |______|______|
 */
 [_SYMBOLS] = KEYMAP( \
-  _______,   KC_LT,           KC_GT,           KC_LCBR,  KC_RCBR, KC_CIRC,          KC_PLUS,   KC_3,        KC_6,         KC_9,         KC_ASTR,      _______, \
-  KC_BSLASH, LSFT_T(KC_LBRC), LCTL_T(KC_RBRC), KC_LPRN,  KC_RPRN, KC_AMPR,          KC_MINUS, RALT_T(KC_2), RCMD_T(KC_5), RCTL_T(KC_8), RSFT_T(KC_0), KC_EQL,  \
-  _______,   KC_PERC,         KC_HASH,         KC_AT,    KC_DLR,  KC_PIPE,          KC_DOT,   KC_1,         KC_4,         KC_7,         KC_SLASH,     _______, \
-  _______,   _______,         XXXXXXX,         KC_GRAVE, KC_EQL,  KC_EQL,           KC_UNDS,  KC_UNDS,      KC_TILDE,     XXXXXXX,      _______,      _______, \
-  _______,   _______,         _______,         _______,  _______, _______,          _______,  _______,      _______,      _______,      _______,      _______  \
+  _______,   KC_LT,           KC_GT,           KC_LCBR,  KC_RCBR,  KC_CIRC,          KC_PLUS,  KC_3,         KC_6,         KC_9,         KC_ASTR,      _______, \
+  KC_BSLASH, LSFT_T(KC_LBRC), LCTL_T(KC_RBRC), KC_LPRN,  KC_RPRN,  KC_AMPR,          KC_MINUS, RALT_T(KC_2), RCMD_T(KC_5), RCTL_T(KC_8), RSFT_T(KC_0), KC_EQL,  \
+  _______,   KC_PERC,         KC_HASH,         KC_AT,    KC_DLR,   KC_PIPE,          KC_DOT,   KC_1,         KC_4,         KC_7,         KC_SLASH,     _______, \
+  _______,   _______,         XXXXXXX,         KC_GRAVE, KC_EQL,   KC_EQL,           KC_UNDS,  KC_UNDS,      KC_TILDE,     XXXXXXX,      _______,      _______, \
+  _______,   _______,         _______,         _______,  KC_GRAVE, KC_GRAVE,         KC_TILDE, KC_TILDE,     _______,      _______,      _______,      _______  \
 ),
 
 
@@ -242,23 +244,23 @@ without separate thumbcluster.
 /* STENOGROPHY TOGGLE
                         ,_____________,            ,_____________,
                         |      |      |            |      |      |
-          		          |      |      |            |      |      |
+          		          | CAPS | INSRT|            | INSRT| CAPS |
       		              |      |      |            |      |      |
                         |______|______|___,    ,___|______|______|
                             |      |      |    |      |      |
-          	                |PLOVER|PLOVER|    | RESET|EEPROM|
+          	                |PLOVER|PLOVER|    | RESET| RESET|
                             |      |      |    |      |      |
 		                        +------+------+    +------+------+
                             |      |      |    |      |      |
- 	                          |STENO1|STENO2|    |      | RESET|
+ 	                          |STENO1|STENO2|    | RESET| RESET|
                             |______|______|    |______|______|
 */
 [_STENO] = KEYMAP( \
-  _______,      _______,       _______, _______, _______, _______,             _______, _______,      _______, _______, _______, _______, \
-  _______,      _______,       _______, _______, _______, _______,             _______, _______,      _______, _______, _______, _______, \
-  _______,      _______,       _______, _______, _______, _______,             _______, _______,      _______, _______, _______, _______, \
-  _______,      _______,       _______, _______, _______, _______,             _______, _______,      _______, _______, _______, _______, \
-  STENO_TXBOLT, STENO_TXBOLT2, _______, _______, PLOVER,  PLOVER,              RESET,   EEPROM_RESET, _______, _______, _______, RESET    \
+  _______,      _______,       _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
+  _______,      _______,       _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
+  _______,      _______,       _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
+  _______,      _______,       _______, _______, KC_LCAP, KC_INS,              KC_INS,  KC_LCAP, _______, _______, _______, _______, \
+  STENO_TXBOLT, STENO_TXBOLT2, _______, _______, PLOVER,  PLOVER,              RESET,   RESET,   _______, _______, RESET,   RESET    \
 ),
 
 
@@ -361,26 +363,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
     // Config for Multi-press layer switching
-   case E_RT:
-      if (record->event.pressed) {
-        layer_on(_DUMMY1);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-      } else {
-        layer_off(_DUMMY1);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-       }
-      return true;// false;
-      break;
-   case R_RT:
-      if (record->event.pressed) {
-        layer_on(_DUMMY2);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-      } else {
-        layer_off(_DUMMY2);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-       }
-      return true;// false;
-      break;
+  //  case E_RT:
+  //     if (record->event.pressed) {
+  //       layer_on(_DUMMY1);
+  //       update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
+  //     } else {
+  //       layer_off(_DUMMY1);
+  //       update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
+  //      }
+  //     return true;// false;
+  //     break;
+  //  case R_RT:
+  //     if (record->event.pressed) {
+  //       layer_on(_DUMMY2);
+  //       update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
+  //     } else {
+  //       layer_off(_DUMMY2);
+  //       update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
+  //      }
+  //     return true;// false;
+  //     break;
 
     // Config for Stenogrophy
     case PLOVER:
