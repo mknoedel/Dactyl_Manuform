@@ -45,5 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAPPING_TERM 120 //200 // how long before a tap becomes a hold
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
 
 #define PREVENT_STUCK_MODIFIERS //when switching layers, this will release all mods
